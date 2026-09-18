@@ -45,4 +45,27 @@
   });
 
   document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+
+  // Back to Top button handler
+  let btt = document.getElementById('backToTop');
+  if (!btt) {
+    btt = document.createElement('button');
+    btt.id = 'backToTop';
+    btt.className = 'back-to-top';
+    btt.setAttribute('aria-label', 'Back to Top');
+    btt.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>';
+    document.body.appendChild(btt);
+  }
+  const toggleBtt = () => {
+    if (window.scrollY > 280) {
+      btt.classList.add('visible');
+    } else {
+      btt.classList.remove('visible');
+    }
+  };
+  window.addEventListener('scroll', toggleBtt, { passive: true });
+  toggleBtt();
+  btt.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 })();
