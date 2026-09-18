@@ -9,7 +9,7 @@
 
   const updateToggleButtons=theme=>{
     document.querySelectorAll('[data-theme-toggle]').forEach(t=>{
-      const isMobile = window.innerWidth <= 900 && t.closest('.nav-links');
+      const isMobile = window.innerWidth <= 1100 && t.closest('.nav-links');
       t.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');
       if (isMobile) {
         t.textContent = theme === 'dark' ? '☼ Light Mode' : '◐ Dark Mode';
@@ -21,7 +21,7 @@
 
   const updateDirButtons=dir=>{
     document.querySelectorAll('[data-dir-toggle]').forEach(t=>{
-      const isMobile = window.innerWidth <= 900 && t.closest('.nav-links');
+      const isMobile = window.innerWidth <= 1100 && t.closest('.nav-links');
       t.setAttribute('aria-label',dir==='rtl'?'Switch to LTR text direction':'Switch to RTL text direction');
       if (isMobile) {
         t.textContent = dir === 'rtl' ? 'LTR Mode' : 'RTL Mode';
@@ -31,9 +31,23 @@
     });
   };
 
+  const closeMenu = () => {
+    const navLinks = document.querySelector('.nav-links');
+    const menuBtn = document.querySelector('[data-menu]');
+    if (navLinks) navLinks.classList.remove('open');
+    if (menuBtn) {
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Open menu');
+      menuBtn.textContent = '☰';
+    }
+  };
+
   window.addEventListener('resize', ()=>{
     updateToggleButtons(root.dataset.theme);
     updateDirButtons(root.getAttribute('dir') || 'ltr');
+    if (window.innerWidth > 1100) {
+      closeMenu();
+    }
   });
 
   updateToggleButtons(initialTheme);
@@ -56,7 +70,24 @@
       updateDirButtons(nextDir);
     }
     const m=e.target.closest('[data-menu]');
-    if(m) document.querySelector('.nav-links')?.classList.toggle('open');
+    if(m) {
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) {
+        const isOpen = navLinks.classList.toggle('open');
+        m.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        m.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        m.textContent = isOpen ? '✕' : '☰';
+      }
+    } else {
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks && navLinks.classList.contains('open')) {
+        const isClickInsideNav = e.target.closest('.site-header');
+        const isNavLinkClick = e.target.closest('.nav-links a');
+        if (!isClickInsideNav || isNavLinkClick) {
+          closeMenu();
+        }
+      }
+    }
 
     const locBtn = e.target.closest('[data-map-loc]');
     if (locBtn) {
