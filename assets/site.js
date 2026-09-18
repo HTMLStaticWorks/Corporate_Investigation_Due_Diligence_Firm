@@ -4,6 +4,9 @@
   const initialTheme=saved || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
   root.dataset.theme=initialTheme;
 
+  const savedDir=localStorage.getItem('site-dir') || 'ltr';
+  root.setAttribute('dir', savedDir);
+
   const updateToggleButtons=theme=>{
     document.querySelectorAll('[data-theme-toggle]').forEach(t=>{
       const isMobile = window.innerWidth <= 900 && t.closest('.nav-links');
@@ -16,9 +19,25 @@
     });
   };
 
-  window.addEventListener('resize', ()=>updateToggleButtons(root.dataset.theme));
+  const updateDirButtons=dir=>{
+    document.querySelectorAll('[data-dir-toggle]').forEach(t=>{
+      const isMobile = window.innerWidth <= 900 && t.closest('.nav-links');
+      t.setAttribute('aria-label',dir==='rtl'?'Switch to LTR text direction':'Switch to RTL text direction');
+      if (isMobile) {
+        t.textContent = dir === 'rtl' ? 'LTR Mode' : 'RTL Mode';
+      } else {
+        t.textContent = dir === 'rtl' ? 'LTR' : 'RTL';
+      }
+    });
+  };
+
+  window.addEventListener('resize', ()=>{
+    updateToggleButtons(root.dataset.theme);
+    updateDirButtons(root.getAttribute('dir') || 'ltr');
+  });
 
   updateToggleButtons(initialTheme);
+  updateDirButtons(savedDir);
 
   document.addEventListener('click',e=>{
     const t=e.target.closest('[data-theme-toggle]');
@@ -28,8 +47,44 @@
       localStorage.setItem('site-theme',next);
       updateToggleButtons(next);
     }
+    const d=e.target.closest('[data-dir-toggle]');
+    if(d){
+      const currentDir=root.getAttribute('dir') || 'ltr';
+      const nextDir=currentDir==='rtl'?'ltr':'rtl';
+      root.setAttribute('dir',nextDir);
+      localStorage.setItem('site-dir',nextDir);
+      updateDirButtons(nextDir);
+    }
     const m=e.target.closest('[data-menu]');
     if(m) document.querySelector('.nav-links')?.classList.toggle('open');
+
+    const locBtn = e.target.closest('[data-map-loc]');
+    if (locBtn) {
+      const targetLoc = locBtn.dataset.mapLoc;
+      document.querySelectorAll('[data-map-loc]').forEach(b => {
+        b.classList.remove('primary');
+        b.classList.add('secondary');
+      });
+      locBtn.classList.remove('secondary');
+      locBtn.classList.add('primary');
+
+      const mumbaiInfo = document.getElementById('mumbaiLocInfo');
+      const londonInfo = document.getElementById('londonLocInfo');
+      const mapIframe = document.getElementById('hubMapIframe');
+      const openMapBtn = document.getElementById('openMapBtn');
+
+      if (targetLoc === 'mumbai') {
+        if (mumbaiInfo) mumbaiInfo.style.display = 'block';
+        if (londonInfo) londonInfo.style.display = 'none';
+        if (mapIframe) mapIframe.src = 'https://maps.google.com/maps?q=Bandra+Kurla+Complex,+Mumbai&t=&z=14&ie=UTF8&iwloc=&output=embed';
+        if (openMapBtn) openMapBtn.href = 'https://maps.google.com/?q=Bandra+Kurla+Complex,+Mumbai';
+      } else if (targetLoc === 'london') {
+        if (mumbaiInfo) mumbaiInfo.style.display = 'none';
+        if (londonInfo) londonInfo.style.display = 'block';
+        if (mapIframe) mapIframe.src = 'https://maps.google.com/maps?q=15+Stratton+Street,+Mayfair,+London&t=&z=15&ie=UTF8&iwloc=&output=embed';
+        if (openMapBtn) openMapBtn.href = 'https://maps.google.com/?q=15+Stratton+Street,+Mayfair,+London';
+      }
+    }
   });
 
   const page=document.body.dataset.page;
