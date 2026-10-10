@@ -3,17 +3,14 @@
 This is a complete static multi-page website inspired by the functional patterns discussed from NARADism (service architecture, case-study storytelling, technology/intelligence positioning, FAQ and confidential enquiry flow) while using an original visual system, brand, copy and layout.
 
 ## Included
-- Home 01
-- Home 02 (unique layout)
-- Services
-- Background Checks
-- Fraud Investigation
-- M&A Due Diligence
-- Corporate Intelligence
-- About
-- Case Studies
-- Insights
-- Confidential Enquiry
+- Home 01 (index.html)
+- Home 02 (home-02.html - unique executive layout)
+- About (about.html)
+- Services (services.html - all-in-one comprehensive practice directory and deep breakdowns)
+- Industries (industries.html - sectors served and sector-specific risk methodologies)
+- Case Studies (case-studies.html - evidence-based anonymized briefs)
+- Insights (insights.html - intelligence advisories and whitepapers)
+- Contact Us (contact.html - confidential consultation scoping)
 - Persistent light/dark theme switch using localStorage
 - Responsive mobile navigation
 - No login, signup or dashboard

@@ -116,6 +116,22 @@
         if (openMapBtn) openMapBtn.href = 'https://maps.google.com/?q=15+Stratton+Street,+Mayfair,+London';
       }
     }
+
+    // Resource tabs switching
+    const tabBtn = e.target.closest('[data-resource-tab]');
+    if (tabBtn) {
+      const targetCategory = tabBtn.dataset.resourceTab;
+      document.querySelectorAll('[data-resource-tab]').forEach(b => b.classList.remove('active'));
+      tabBtn.classList.add('active');
+
+      document.querySelectorAll('[data-resource-category]').forEach(card => {
+        if (targetCategory === 'all' || card.dataset.resourceCategory === targetCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
   });
 
   const page=document.body.dataset.page;
@@ -123,7 +139,8 @@
 
   document.querySelectorAll('.nav-links a').forEach(a=>{
     const linkPath=a.getAttribute('href')?.split('/').pop();
-    if((page && a.dataset.page===page) || (linkPath && (linkPath===currentPath || (currentPath==='' && linkPath==='index.html')))){
+    if((page && a.dataset.page===page) || 
+       (linkPath && (linkPath===currentPath || (currentPath==='' && linkPath==='index.html')))){
       a.classList.add('active');
     } else {
       a.classList.remove('active');
