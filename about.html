@@ -8,6 +8,34 @@
   <meta name="description" content="Independent corporate investigations, intelligence and due diligence practice.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    @media (max-width: 1100px) {
+      .timeline-stepper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px;
+      }
+
+      .timeline-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .timeline-card p {
+        min-height: 4.6rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .timeline-stepper {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .timeline-card h3,
+      .timeline-card p {
+        min-height: 0;
+      }
+    }
+  </style>
 </head>
 
 <body data-page="about" class="">
@@ -180,7 +208,9 @@
         <p>BKC, Mumbai: +91 (0) 22 4900 1200</p>
         <p>Mayfair, London: +44 (0) 20 7946 0920</p>
         <p>Secure Email: enquiries@veritas-intel.com</p>
-        <p style="margin-top:14px;"><a class="btn gold" style="display:inline-block;padding:8px 16px;font-size:0.82rem;" href="contact.html">Contact Us</a></p>
+        <div class="footer-cta-wrap">
+          <a class="btn gold footer-cta-btn" href="contact.html">Contact Us</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">

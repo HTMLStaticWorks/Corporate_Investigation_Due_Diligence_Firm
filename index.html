@@ -8,6 +8,167 @@
   <meta name="description" content="Independent corporate investigations, M&A due diligence, background verification, fraud fact-finding, and risk assessment for leadership teams.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Card content row synchronization: eyebrow, heading, subheading, links/deliverables align to identical horizontal baselines */
+    .who-we-serve-grid,
+    .timeline-stepper {
+      align-items: stretch;
+    }
+
+    .serve-card,
+    .timeline-card {
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .serve-card .serve-icon {
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    .serve-card h3 {
+      min-height: 3.65rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .serve-card p {
+      min-height: 5.75rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .serve-card .serve-list {
+      margin-top: auto;
+    }
+
+    .serve-card .serve-list li {
+      min-height: 2.5rem;
+      line-height: 1.35;
+    }
+
+    .timeline-card .timeline-header {
+      flex-shrink: 0;
+      margin-bottom: 14px;
+    }
+
+    .timeline-card h3 {
+      min-height: 3.45rem;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .timeline-card p {
+      min-height: 5.4rem;
+      line-height: 1.58;
+      margin-bottom: 16px;
+    }
+
+    .timeline-card .timeline-deliverable {
+      margin-top: auto;
+    }
+
+    @supports (grid-template-rows: subgrid) {
+      @media (min-width: 1101px) {
+        .who-we-serve-grid {
+          grid-template-rows: auto auto 1fr auto;
+        }
+        .who-we-serve-grid .serve-card {
+          display: grid;
+          grid-row: span 4;
+          grid-template-rows: subgrid;
+          row-gap: 0;
+        }
+        .who-we-serve-grid .serve-card h3,
+        .who-we-serve-grid .serve-card p {
+          min-height: 0;
+        }
+        .who-we-serve-grid .serve-card .serve-list {
+          margin-top: 0;
+        }
+
+        .timeline-stepper {
+          grid-template-rows: auto auto 1fr auto;
+        }
+        .timeline-stepper .timeline-card {
+          display: grid;
+          grid-row: span 4;
+          grid-template-rows: subgrid;
+          row-gap: 0;
+        }
+        .timeline-stepper .timeline-card h3,
+        .timeline-stepper .timeline-card p {
+          min-height: 0;
+        }
+        .timeline-stepper .timeline-card .timeline-deliverable {
+          margin-top: 0;
+        }
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .who-we-serve-grid,
+      .timeline-stepper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px;
+      }
+
+      .serve-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .serve-card p {
+        min-height: 4.8rem;
+      }
+
+      .timeline-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .timeline-card p {
+        min-height: 4.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .who-we-serve-grid,
+      .timeline-stepper {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .serve-card h3,
+      .serve-card p,
+      .timeline-card h3,
+      .timeline-card p {
+        min-height: 0;
+      }
+    }
+
+    .footer-cta-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .footer-cta-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 10px 24px !important;
+      font-size: 0.84rem !important;
+      height: auto !important;
+      min-height: 38px !important;
+      line-height: 1 !important;
+      margin: 0 auto !important;
+    }
+  </style>
 </head>
 
 <body data-page="home" class="">
@@ -71,9 +232,9 @@
           <h3>Businesses & Corporations</h3>
           <p>Protecting commercial operations, intellectual property, and enterprise reputation against internal fraud, leakages, and bad actors.</p>
           <ul class="serve-list">
-            <li>Whistleblower & Misconduct Triage</li>
-            <li>Procurement & Vendor Collusion Audits</li>
-            <li>IP Exfiltration & Non-Compete Breach</li>
+            <li>Whistleblower & Misconduct Triage Support</li>
+            <li>Procurement & Vendor Collusion Audit Checks</li>
+            <li>IP Exfiltration & Non-Compete Breach Checks</li>
           </ul>
         </div>
 
@@ -82,9 +243,9 @@
           <h3>Institutional Investors & PE</h3>
           <p>Stress-testing the investment thesis, verifying promoter integrity, and discovering unrecorded debt or regulatory liabilities before closing.</p>
           <ul class="serve-list">
-            <li>Pre-M&A Integrity Diligence</li>
-            <li>Promoter Track Record Auditing</li>
-            <li>Beneficial Ownership & Nominee Tracing</li>
+            <li>Pre-M&A Integrity Diligence & Risk Checks</li>
+            <li>Promoter Track Record Auditing & Verification</li>
+            <li>Beneficial Ownership & Nominee Entity Tracing</li>
           </ul>
         </div>
 
@@ -93,9 +254,9 @@
           <h3>Legal Professionals & Counsel</h3>
           <p>Delivering legally gathered, defensible intelligence and evidence for commercial disputes, arbitral proceedings, and judgment enforcement.</p>
           <ul class="serve-list">
-            <li>Cross-Border Asset Tracing</li>
+            <li>Cross-Border Asset Tracing & Recovery Support</li>
             <li>Witness Background & Credibility Profiling</li>
-            <li>Litigation Evidence Corroboration</li>
+            <li>Litigation Evidence Corroboration & Fact Review</li>
           </ul>
         </div>
 
@@ -106,13 +267,13 @@
           <ul class="serve-list">
             <li>C-Suite & Board Background Vetting</li>
             <li>Geopolitical & Regulatory Risk Audits</li>
-            <li>Discreet Crisis Fact Containment</li>
+            <li>Discreet Crisis Fact Containment & Quick Response</li>
           </ul>
         </div>
       </div>
 
       <div style="text-align:center;margin-top:32px;">
-        <a class="btn ghost" href="industries.html">Explore all stakeholder & industry practices →</a>
+        <a class="btn ghost" href="industries.html">Explore all stakeholder & industry practices</a>
       </div>
     </div>
   </section>
@@ -137,7 +298,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 01</span>
             <h3>Corporate Investigations</h3>
             <p>Discreet fact-finding into internal misconduct, IP theft, conflicts of interest, and cross-border asset dissipation.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
 
@@ -147,7 +308,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 02</span>
             <h3>Due Diligence</h3>
             <p>Integrity diligence for M&A, joint ventures, and investments. Uncovering undisclosed debt, litigation, and promoter track records.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
 
@@ -157,7 +318,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 03</span>
             <h3>Background Verification</h3>
             <p>Intelligence-grade executive and board vetting. Separating polished CV claims from regulatory sanctions, civil suits, and conflicts.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
 
@@ -167,7 +328,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 04</span>
             <h3>Fraud Investigations</h3>
             <p>Forensic inquiries into procurement kickbacks, phantom vendors, corporate embezzlement, revenue manipulation, and asset recovery.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
 
@@ -177,7 +338,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 05</span>
             <h3>Risk Assessment</h3>
             <p>Strategic foresight analyzing supply chain dependencies, geopolitical shifts, emerging market regulatory hurdles, and physical risks.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
 
@@ -187,7 +348,7 @@
             <span class="eyebrow" style="color:var(--gold);font-weight:700;">Category 06</span>
             <h3>Compliance Support</h3>
             <p>Independent evidentiary reviews covering anti-bribery (FCPA/UKBA), trade sanctions screening (OFAC), AML compliance, and ESG defense.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service & process ↗</span>
+            <span class="card-link" style="color:var(--gold);font-size:0.78rem;font-weight:600;letter-spacing:0.02em;display:inline-block;margin-top:auto;padding-top:10px;">View Details</span>
           </div>
         </a>
       </div>
@@ -312,7 +473,7 @@
           <span class="tag">Illustrative Composite · Procurement & Integrity</span>
           <h3>The supplier relationship that did not appear on any disclosure.</h3>
           <p>A routine vendor audit surfaced a network of shared registered addresses, common offshore directors, and circular payment flows. Relationship mapping and ground corroboration prevented a multi-million-dollar fraud scheme.</p>
-          <a class="btn ghost" href="case-studies.html">Explore all case studies ↗</a>
+          <a class="btn ghost" href="case-studies.html">Explore all case studies</a>
         </div>
       </div>
     </div>
@@ -336,21 +497,21 @@
           <span class="resource-badge">Whitepaper</span>
           <h3>Cross-Border Asset Tracing in Complex Jurisdictions</h3>
           <p>Methodologies for unravelling offshore shell structures, nominee directors, and beneficial ownership chains across international financial centers.</p>
-          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Access whitepaper ↗</a>
+          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Access whitepaper</a>
         </article>
 
         <article class="card">
           <span class="resource-badge">Risk Analysis</span>
           <h3>When Clean Corporate Registry Records Hide Material Risk</h3>
           <p>Why formal statutory filings represent only the public surface, and how relationship mapping reveals undisclosed litigation and liabilities.</p>
-          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Read risk note ↗</a>
+          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Read risk note</a>
         </article>
 
         <article class="card">
           <span class="resource-badge">Expert Checklist</span>
           <h3>Pre-Acquisition Integrity Diligence Checklist</h3>
           <p>A practical, step-by-step framework for investment committees evaluating founder integrity, litigation exposure, and related-party risks.</p>
-          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Download checklist ↗</a>
+          <a class="btn ghost" style="margin-top:auto;" href="insights.html">Download checklist</a>
         </article>
       </div>
     </div>
@@ -362,9 +523,9 @@
       <div class="eyebrow">06 / Confidential Consultation</div>
       <h2 style="margin:12px 0 16px;">Start with the question. Not the whole story.</h2>
       <p class="lead">Tell us only what is necessary to frame the situation. We can discuss the appropriate next step before sensitive names or proprietary files are shared.</p>
-      <div style="margin-top:28px;">
+      <div class="cta-btn-group">
         <a class="btn gold" href="contact.html">Request a Confidential Consultation</a>
-        <a class="btn secondary" style="margin-left:10px;" href="services.html">Explore All Practices</a>
+        <a class="btn secondary" href="services.html">Explore All Practices</a>
       </div>
     </div>
   </section>
@@ -402,7 +563,9 @@
         <p>BKC, Mumbai: +91 (0) 22 4900 1200</p>
         <p>Mayfair, London: +44 (0) 20 7946 0920</p>
         <p>Secure Email: enquiries@veritas-intel.com</p>
-        <p style="margin-top:14px;"><a class="btn gold" style="display:inline-block;padding:8px 16px;font-size:0.82rem;" href="contact.html">Contact Us</a></p>
+        <div class="footer-cta-wrap">
+          <a class="btn gold footer-cta-btn" href="contact.html">Contact Us</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">

@@ -8,6 +8,93 @@
   <meta name="description" content="Sector-tailored corporate investigations, intelligence and due diligence for investors, counsel, and corporations.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Card content row synchronization: icon, heading, paragraph, list items align to identical baselines */
+    .who-we-serve-grid {
+      align-items: stretch;
+    }
+
+    .serve-card {
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .serve-card .serve-icon {
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    .serve-card h3 {
+      min-height: 3.5rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .serve-card p {
+      min-height: 4.8rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .serve-card .serve-list {
+      margin-top: auto;
+    }
+
+    .serve-card .serve-list li {
+      min-height: 2.75rem;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 1100px) {
+      .who-we-serve-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px;
+      }
+
+      .serve-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .serve-card p {
+        min-height: 4.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .who-we-serve-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .serve-card h3,
+      .serve-card p {
+        min-height: 0;
+      }
+    }
+
+    /* Footer CTA Button Alignment */
+    .footer-cta-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .footer-cta-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 10px 24px !important;
+      font-size: 0.84rem !important;
+      height: auto !important;
+      min-height: 38px !important;
+      line-height: 1 !important;
+      margin: 0 auto !important;
+    }
+  </style>
 </head>
 
 <body data-page="industries" class="">
@@ -61,37 +148,37 @@
       <div class="who-we-serve-grid">
         <div class="serve-card">
           <div class="serve-icon">🏢</div>
-          <h3>Businesses & Enterprises</h3>
+          <h3>Businesses & Corporate Entities</h3>
           <p>Protecting corporate balance sheets, operational integrity, and intellectual property from internal and external threats.</p>
           <ul class="serve-list">
-            <li>Internal Fraud & Embezzlement Triage</li>
-            <li>Whistleblower Allegation Fact-Finding</li>
-            <li>Vendor & Procurement Collusion Audits</li>
-            <li>Trade Secret & IP Exfiltration Inquiries</li>
+            <li>Internal Fraud & Embezzlement Triage Reviews</li>
+            <li>Whistleblower Allegation Fact-Finding & Audits</li>
+            <li>Vendor & Procurement Collusion Detection Checks</li>
+            <li>Trade Secret & IP Exfiltration Forensic Inquiries</li>
           </ul>
         </div>
 
         <div class="serve-card">
           <div class="serve-icon">📈</div>
-          <h3>Institutional Investors & PE</h3>
-          <p>Uncovering the facts behind the pitch deck before growth capital or acquisition financing is committed.</p>
+          <h3>Institutional Investors & PE Funds</h3>
+          <p>Uncovering the facts behind the pitch deck before growth capital, debt, or acquisition financing is committed.</p>
           <ul class="serve-list">
-            <li>Pre-M&A Integrity Diligence</li>
-            <li>Promoter & Founder Background Checks</li>
-            <li>Hidden Related-Party Transaction Mapping</li>
-            <li>Downside Valuation Risk Discovery</li>
+            <li>Pre-M&A Integrity Diligence & Risk Scrutiny</li>
+            <li>Promoter & Founder Background Checks Verification</li>
+            <li>Hidden Related-Party Transaction Mapping Audits</li>
+            <li>Downside Valuation Risk Discovery & Capital Defense</li>
           </ul>
         </div>
 
         <div class="serve-card">
           <div class="serve-icon">⚖️</div>
-          <h3>Legal Counsel & Law Firms</h3>
+          <h3>Legal Counsel & Arbitral Law Firms</h3>
           <p>Equipping dispute and corporate attorneys with court-defensible facts and evidence for arbitration and complex litigation.</p>
           <ul class="serve-list">
-            <li>International Asset Tracing & Enforcement</li>
-            <li>Witness Identification & Background Profiling</li>
-            <li>Evidentiary Document Verification</li>
-            <li>Bilateral Non-Disclosure Compliance</li>
+            <li>International Asset Tracing & Enforcement Actions</li>
+            <li>Witness Identification & Background Credibility Profiling</li>
+            <li>Evidentiary Document Verification & Chain Of Custody</li>
+            <li>Bilateral Non-Disclosure Compliance & Protocol Audits</li>
           </ul>
         </div>
 
@@ -100,10 +187,10 @@
           <h3>Boards & C-Suite Decision-Makers</h3>
           <p>Providing independent, partner-led counsel for moments when standard executive reporting leaves critical questions unanswered.</p>
           <ul class="serve-list">
-            <li>C-Suite & Independent Director Screening</li>
-            <li>Cross-Border Sovereign & Regulatory Risk</li>
-            <li>Hostile Takeover & Activist Intelligence</li>
-            <li>Crisis Management & Fact Containment</li>
+            <li>C-Suite & Independent Director Screening Audits</li>
+            <li>Cross-Border Sovereign & Regulatory Risk Assessments</li>
+            <li>Hostile Takeover & Activist Intelligence Playbooks</li>
+            <li>Crisis Management & Fact Containment Urgent Triage</li>
           </ul>
         </div>
       </div>
@@ -167,9 +254,9 @@
       <div class="eyebrow">03 / Need tailored intelligence?</div>
       <h2 style="margin:12px 0 20px;">Discuss your sector challenge with a senior partner.</h2>
       <p class="lead">We provide initial exploratory consultations under strict confidence without requiring disclosure of sensitive counterparty names.</p>
-      <div style="margin-top:32px;">
+      <div class="cta-btn-group">
         <a class="btn gold" href="contact.html">Request a Confidential Consultation</a>
-        <a class="btn secondary" style="margin-left:12px;" href="services.html">Explore All Services</a>
+        <a class="btn secondary" href="services.html">Explore All Services</a>
       </div>
     </div>
   </section>
@@ -207,7 +294,9 @@
         <p>BKC, Mumbai: +91 (0) 22 4900 1200</p>
         <p>Mayfair, London: +44 (0) 20 7946 0920</p>
         <p>Secure Email: enquiries@veritas-intel.com</p>
-        <p style="margin-top:14px;"><a class="btn gold" style="display:inline-block;padding:8px 16px;font-size:0.82rem;" href="contact.html">Contact Us</a></p>
+        <div class="footer-cta-wrap">
+          <a class="btn gold footer-cta-btn" href="contact.html">Contact Us</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">

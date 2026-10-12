@@ -8,6 +8,301 @@
   <meta name="description" content="Comprehensive corporate investigation, due diligence, background verification, fraud, risk, and compliance practices.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Hero Header Spacing and Vertical Rhythm */
+    .hero.hero-split,
+    .hero.hero-h2 {
+      height: auto !important;
+      min-height: 520px !important;
+      padding-top: clamp(40px, 5.5vw, 68px) !important;
+      padding-bottom: clamp(36px, 5vw, 60px) !important;
+      justify-content: flex-start !important;
+      box-sizing: border-box !important;
+    }
+
+    .hero.hero-split .hero-inner,
+    .hero.hero-h2 .hero-inner {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Practice Directory Console Layout */
+    .practice-console-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    @media(max-width: 1100px) {
+      .practice-console-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .timeline-stepper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px;
+      }
+
+      .timeline-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .timeline-card p {
+        min-height: 4.6rem;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .practice-console-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .timeline-stepper {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .timeline-card h3,
+      .timeline-card p {
+        min-height: 0;
+      }
+    }
+
+    .practice-console-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--gold);
+      border-radius: 12px;
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      height: 100%;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .practice-console-card:hover {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.14);
+    }
+
+    .practice-console-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .practice-console-id {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .practice-console-code {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .practice-console-num {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .practice-console-sla {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .practice-console-sla-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .practice-console-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .practice-console-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--gold) 12%, var(--surface2));
+      border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      transition: transform .25s ease, background-color .25s ease, color .25s ease;
+      flex-shrink: 0;
+    }
+
+    .practice-console-card:hover .practice-console-icon {
+      transform: scale(1.08);
+      background: var(--gold);
+      color: #0b1523;
+    }
+
+    .practice-console-header-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .practice-console-header-text h3 {
+      font-size: 1.22rem;
+      line-height: 1.25;
+      margin: 0 0 3px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .practice-console-focus {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .practice-console-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 16px;
+      min-height: 48px;
+    }
+
+    .practice-console-scopes {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: auto;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .practice-console-scopes-title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .practice-console-scope-item {
+      font-size: 0.81rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .practice-console-scope-item span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .practice-console-scope-item svg {
+      width: 13px;
+      height: 13px;
+      min-width: 13px;
+      margin-top: 0;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .practice-console-cta {
+      display: inline-flex;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--gold);
+      transition: color .2s ease;
+    }
+
+    .practice-console-card:hover .practice-console-cta {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Footer CTA Button Alignment */
+    .footer-cta-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .footer-cta-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 10px 24px !important;
+      font-size: 0.84rem !important;
+      height: auto !important;
+      min-height: 38px !important;
+      line-height: 1 !important;
+      margin: 0 auto !important;
+    }
+
+    [dir="rtl"] .practice-console-scope-item svg {
+      transform: scaleX(-1);
+    }
+  </style>
 </head>
 
 <body data-page="services" class="">
@@ -62,77 +357,298 @@
     </div>
   </section>
 
-  <!-- 6 Practice Overview Grid -->
+  <!-- 6 Practice Overview: Architectural Practice Console & Directory -->
   <section class="section" id="servicesGrid">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">01 / Practice Directory</div>
-          <h2>Six distinct investigative disciplines.</h2>
+          <div class="eyebrow">01 / Services</div>
+          <h2>Practice Areas</h2>
         </div>
         <div>
-          <p>Every practice is partner-supervised, conducted under strict confidentiality protocols, and tailored to provide legally defensible evidence.</p>
+          <p>Partner-supervised intelligence practices tailored to corporate malfeasance, asset tracing, and commercial risk.</p>
         </div>
       </div>
 
-      <div class="grid grid-3" style="margin-top:20px;">
-        <a class="image-card" href="#corporate-investigations">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Corporate Investigations">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 01</span>
-            <h3>Corporate Investigations</h3>
-            <p>Discreet fact-finding into internal misconduct, trade secret theft, covert conflicts of interest, and cross-border asset dissipation.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+      <div class="practice-console-grid">
+        <!-- Practice 01 -->
+        <a class="practice-console-card" href="#corporate-investigations">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">01</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>2–3 WEEKS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <path d="M9 21V9"/>
+                <circle cx="15" cy="15" r="2.5"/>
+                <path d="M17 17l2.5 2.5"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Internal Investigations</h3>
+              <span class="practice-console-focus">Asset Tracing</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Discreet forensic fact-finding into internal whistleblower claims, trade secret theft, and cross-border asset dissipation.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Asset tracing & offshore recovery</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Whistleblower allegation audits</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Trade secret & IP leak mapping</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
 
-        <a class="image-card" href="#due-diligence">
-          <img src="assets/home3.jfif" alt="Due Diligence">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 02</span>
-            <h3>Due Diligence</h3>
-            <p>Integrity diligence for M&A, joint ventures, and investments. Verifying beneficial ownership, promoter history, and unrecorded debt liabilities.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+        <!-- Practice 02 -->
+        <a class="practice-console-card" href="#due-diligence">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">02</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>10–15 DAYS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <path d="M9 13h6"/>
+                <path d="M9 17h4"/>
+                <path d="M10 9H8"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Transaction Diligence</h3>
+              <span class="practice-console-focus">M&A Scrutiny</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Integrity diligence for M&A, joint ventures, and capital investments uncovering beneficial ownership and debt liabilities.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Beneficial ownership unwrapping</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Undisclosed debt encumbrances</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Promoter track record checks</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
 
-        <a class="image-card" href="#background-verification">
-          <img src="assets/home0.jpg" alt="Background Verification">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 03</span>
-            <h3>Background Verification</h3>
-            <p>Intelligence-grade executive and board vetting. Separating polished CV claims from civil litigation, corporate interlocks, and sanctions.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+        <!-- Practice 03 -->
+        <a class="practice-console-card" href="#background-verification">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">03</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>7–10 DAYS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M16 11l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Executive Vetting</h3>
+              <span class="practice-console-focus">Executive Vetting</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Intelligence-grade executive vetting separating polished CV assertions from civil litigation, conflicts, and regulatory sanctions.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>C-Suite & board appointee vetting</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Corporate interlocks & affiliations</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Global sanctions & PEP screening</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
 
-        <a class="image-card" href="#fraud-investigations">
-          <img src="assets/frdinv.webp" alt="Fraud Investigations">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 04</span>
-            <h3>Fraud Investigations</h3>
-            <p>Forensic fact-finding into procurement kickbacks, phantom vendors, corporate embezzlement, revenue timing manipulation, and losses.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+        <!-- Practice 04 -->
+        <a class="practice-console-card" href="#fraud-investigations">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">04</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>2–4 WEEKS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+                <line x1="11" y1="8" x2="11" y2="14"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Financial Forensics</h3>
+              <span class="practice-console-focus">Forensic Inquiries</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Forensic fact-finding into procurement kickbacks, phantom vendors, corporate embezzlement, and ledger manipulation.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Procurement collusion audits</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Phantom vendor invoice tracing</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Courtroom-ready forensic logs</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
 
-        <a class="image-card" href="#risk-assessment">
-          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Risk Assessment">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 05</span>
-            <h3>Risk Assessment</h3>
-            <p>Strategic foresight analyzing supply chain vulnerabilities, geopolitical shifts, emerging market regulatory friction, and security risks.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+        <!-- Practice 05 -->
+        <a class="practice-console-card" href="#risk-assessment">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">05</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>2–3 WEEKS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 19 21 12 17 5 21 12 2"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Risk Advisory</h3>
+              <span class="practice-console-focus">Strategic Risk</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Strategic foresight analyzing critical supply chain vulnerabilities, geopolitical exposure, and emerging market regulatory friction.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Regulatory friction assessments</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Supply chain dependency audits</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Sovereign counterparty reviews</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
 
-        <a class="image-card" href="#compliance-support">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Compliance Support">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 06</span>
-            <h3>Compliance Support</h3>
-            <p>Independent evidentiary reviews covering anti-bribery (FCPA/UKBA), trade sanctions screening (OFAC), AML compliance, and ESG defense.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:14px;">View practice details ↓</span>
+        <!-- Practice 06 -->
+        <a class="practice-console-card" href="#compliance-support">
+          <div class="practice-console-top">
+            <div class="practice-console-id">
+              <span class="practice-console-code">PRACTICE</span>
+              <strong class="practice-console-num">06</strong>
+            </div>
+            <div class="practice-console-sla">
+              <span class="practice-console-sla-dot"></span>
+              <span>10–15 DAYS</span>
+            </div>
+          </div>
+          <div class="practice-console-identity">
+            <div class="practice-console-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18"/>
+                <path d="M6 7h12"/>
+                <path d="M6 7l-3 6h6l-3-6z"/>
+                <path d="M18 7l-3 6h6l-3-6z"/>
+                <path d="M4 21h16"/>
+              </svg>
+            </div>
+            <div class="practice-console-header-text">
+              <h3>Regulatory Assurance</h3>
+              <span class="practice-console-focus">Regulatory Defense</span>
+            </div>
+          </div>
+          <p class="practice-console-desc">Independent evidentiary reviews covering anti-bribery (FCPA/UKBA), trade sanctions screening (OFAC), and board AML defense.</p>
+          <div class="practice-console-scopes">
+            <div class="practice-console-scopes-title">Core Scopes</div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>FCPA & anti-bribery reviews</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>AML & counterparty screening</span>
+            </div>
+            <div class="practice-console-scope-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Statutory defense master dossiers</span>
+            </div>
+          </div>
+          <div class="practice-console-cta">
+            <span>View Details</span>
           </div>
         </a>
       </div>
@@ -144,20 +660,20 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">02 / Comprehensive Practice Breakdown</div>
-          <h2>Detailed scope, process & commercial benefits.</h2>
+          <div class="eyebrow">02 / Specifications</div>
+          <h2>Practice Details</h2>
         </div>
         <div>
           <p>Explore the full operating scope for each practice discipline below, or visit dedicated dossier pages.</p>
         </div>
       </div>
 
-      <!-- Practice 1: Corporate Investigations -->
+      <!-- Practice 1: Internal Investigations -->
       <article class="card" id="corporate-investigations" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 01 · Corporate Investigations</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Corporate Investigations & Internal Fact-Finding</h3>
+            <span class="eyebrow">Practice 01 · Internal Investigations</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Internal Investigations</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 2 – 3 Weeks</span>
         </div>
@@ -177,17 +693,17 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Demonstrates proactive fiduciary oversight to regulators, provides litigation-ready court evidence, and prevents public market leakages.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
 
-      <!-- Practice 2: Due Diligence -->
+      <!-- Practice 2: Transaction Diligence -->
       <article class="card" id="due-diligence" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 02 · Due Diligence</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Integrity Due Diligence & M&A Intelligence</h3>
+            <span class="eyebrow">Practice 02 · Transaction Diligence</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Transaction Diligence</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 10 – 15 Days</span>
         </div>
@@ -207,17 +723,17 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Generates deal pricing leverage, avoids toxic unrecorded debts, and provides investment committees with objective governance sign-off.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
 
-      <!-- Practice 3: Background Verification -->
+      <!-- Practice 3: Executive Vetting -->
       <article class="card" id="background-verification" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 03 · Background Verification</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Executive & Boardroom Background Verification</h3>
+            <span class="eyebrow">Practice 03 · Executive Vetting</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Executive Vetting</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 7 – 10 Days</span>
         </div>
@@ -237,17 +753,17 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Shields enterprise boards from leadership scandals, ensures "fit and proper" regulatory compliance, and protects corporate culture.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
 
-      <!-- Practice 4: Fraud Investigations -->
+      <!-- Practice 4: Financial Forensics -->
       <article class="card" id="fraud-investigations" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 04 · Fraud Investigations</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Fraud Investigations & Forensic Fact-Finding</h3>
+            <span class="eyebrow">Practice 04 · Financial Forensics</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Financial Forensics</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 2 – 4 Weeks</span>
         </div>
@@ -267,17 +783,17 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Enables asset recovery and insurance claims, terminates collusive contracts, and provides general counsel with termination defensibility.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
 
-      <!-- Practice 5: Risk Assessment -->
+      <!-- Practice 5: Risk Advisory -->
       <article class="card" id="risk-assessment" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 05 · Risk Assessment</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Strategic Risk Assessment & Foresight</h3>
+            <span class="eyebrow">Practice 05 · Risk Advisory</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Risk Advisory</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 2 – 3 Weeks</span>
         </div>
@@ -297,17 +813,17 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Prevents unhedged capital allocation, creates resilient supply redundancies, and equips executive boards with crisis response readiness.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
 
-      <!-- Practice 6: Compliance Support -->
+      <!-- Practice 6: Regulatory Assurance -->
       <article class="card" id="compliance-support" style="margin-bottom:32px;padding:36px 30px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
           <div>
-            <span class="eyebrow">Practice 06 · Compliance Support</span>
-            <h3 style="font-size:1.85rem;margin-top:4px;">Regulatory Compliance & Enforcement Defense</h3>
+            <span class="eyebrow">Practice 06 · Regulatory Assurance</span>
+            <h3 style="font-size:1.45rem;margin-top:4px;">Regulatory Assurance</h3>
           </div>
           <span class="timeline-duration" style="font-size:0.82rem;">Turnaround: 10 – 15 Days</span>
         </div>
@@ -327,7 +843,7 @@
             <p style="font-size:0.86rem;color:var(--muted);margin:0;">Proactive documentation provides vital mitigation credit under regulatory guidelines, preserves credit lines, and safeguards corporate standing.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="practice-action-wrap" style="margin-top:24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a class="btn gold" style="font-size:0.85rem;padding:8px 18px;" href="contact.html">Request Scoping</a>
         </div>
       </article>
@@ -491,12 +1007,12 @@
       </div>
       <div>
         <h4>Practice Areas</h4>
-        <p><a href="services.html#corporate-investigations">Corporate Investigations</a></p>
-        <p><a href="services.html#due-diligence">Due Diligence</a></p>
-        <p><a href="services.html#background-verification">Background Verification</a></p>
-        <p><a href="services.html#fraud-investigations">Fraud Investigations</a></p>
-        <p><a href="services.html#risk-assessment">Risk Assessment</a></p>
-        <p><a href="services.html#compliance-support">Compliance Support</a></p>
+        <p><a href="services.html#corporate-investigations">Internal Investigations</a></p>
+        <p><a href="services.html#due-diligence">Transaction Diligence</a></p>
+        <p><a href="services.html#background-verification">Executive Vetting</a></p>
+        <p><a href="services.html#fraud-investigations">Financial Forensics</a></p>
+        <p><a href="services.html#risk-assessment">Risk Advisory</a></p>
+        <p><a href="services.html#compliance-support">Regulatory Assurance</a></p>
       </div>
       <div>
         <h4>Firm</h4>
@@ -511,7 +1027,9 @@
         <p>BKC, Mumbai: +91 (0) 22 4900 1200</p>
         <p>Mayfair, London: +44 (0) 20 7946 0920</p>
         <p>Secure Email: enquiries@veritas-intel.com</p>
-        <p style="margin-top:14px;"><a class="btn gold" style="display:inline-block;padding:8px 16px;font-size:0.82rem;" href="contact.html">Contact Us</a></p>
+        <div class="footer-cta-wrap">
+          <a class="btn gold footer-cta-btn" href="contact.html">Contact Us</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">

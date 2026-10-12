@@ -103,17 +103,32 @@
       const londonInfo = document.getElementById('londonLocInfo');
       const mapIframe = document.getElementById('hubMapIframe');
       const openMapBtn = document.getElementById('openMapBtn');
+      const badge = document.getElementById('mapLocBadge');
+      const title = document.getElementById('mapTitle');
+      const desc = document.getElementById('mapDesc');
+      const addr = document.getElementById('mapAddress');
+      const phone = document.getElementById('mapPhone');
 
       if (targetLoc === 'mumbai') {
         if (mumbaiInfo) mumbaiInfo.style.display = 'block';
         if (londonInfo) londonInfo.style.display = 'none';
         if (mapIframe) mapIframe.src = 'https://maps.google.com/maps?q=Bandra+Kurla+Complex,+Mumbai&t=&z=14&ie=UTF8&iwloc=&output=embed';
         if (openMapBtn) openMapBtn.href = 'https://maps.google.com/?q=Bandra+Kurla+Complex,+Mumbai';
+        if (badge) badge.textContent = 'Asia-Pacific Hub';
+        if (title) title.textContent = 'Mumbai BKC Operations';
+        if (desc) desc.textContent = 'Partner-led investigations, pre-M&A integrity due diligence, and fraud triage across India and South Asia.';
+        if (addr) addr.textContent = 'Level 12, Platina Tower, Bandra Kurla Complex (BKC), Mumbai 400051';
+        if (phone) phone.textContent = '+91 (0) 22 4900 1200';
       } else if (targetLoc === 'london') {
         if (mumbaiInfo) mumbaiInfo.style.display = 'none';
         if (londonInfo) londonInfo.style.display = 'block';
         if (mapIframe) mapIframe.src = 'https://maps.google.com/maps?q=15+Stratton+Street,+Mayfair,+London&t=&z=15&ie=UTF8&iwloc=&output=embed';
         if (openMapBtn) openMapBtn.href = 'https://maps.google.com/?q=15+Stratton+Street,+Mayfair,+London';
+        if (badge) badge.textContent = 'Europe & Cross-Border Hub';
+        if (title) title.textContent = 'London Mayfair Operations';
+        if (desc) desc.textContent = 'Cross-border asset recovery, international litigation support, and regulatory sanctions defense for global leadership.';
+        if (addr) addr.textContent = '15 Stratton Street, Mayfair, London W1J 8LF, United Kingdom';
+        if (phone) phone.textContent = '+44 (0) 20 7946 0920';
       }
     }
 

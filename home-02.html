@@ -8,6 +8,499 @@
   <meta name="description" content="Discreet corporate investigations, intelligence and due diligence for high-stakes decisions.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Hero Header Spacing and Vertical Rhythm */
+    .hero.hero-h2,
+    .hero.hero-split {
+      height: auto !important;
+      min-height: 520px !important;
+      padding-top: clamp(40px, 5.5vw, 68px) !important;
+      padding-bottom: clamp(36px, 5vw, 60px) !important;
+      justify-content: flex-start !important;
+      box-sizing: border-box !important;
+    }
+
+    .hero.hero-h2 .hero-inner,
+    .hero.hero-split .hero-inner {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Card content row synchronization: eyebrow, heading, subheading, links/deliverables align to identical horizontal baselines */
+    .who-we-serve-grid,
+    .timeline-stepper {
+      align-items: stretch;
+    }
+
+    .serve-card,
+    .timeline-card {
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .serve-card .serve-icon {
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    .serve-card h3 {
+      min-height: 3.65rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .serve-card p {
+      min-height: 5.75rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .serve-card .serve-list {
+      margin-top: auto;
+    }
+
+    .serve-card .serve-list li {
+      min-height: 2.5rem;
+      line-height: 1.35;
+    }
+
+    .timeline-card .timeline-header {
+      flex-shrink: 0;
+      margin-bottom: 14px;
+    }
+
+    .timeline-card h3 {
+      min-height: 3.45rem;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .timeline-card p {
+      min-height: 5.4rem;
+      line-height: 1.58;
+      margin-bottom: 16px;
+    }
+
+    .timeline-card .timeline-deliverable {
+      margin-top: auto;
+    }
+
+    @supports (grid-template-rows: subgrid) {
+      @media (min-width: 1101px) {
+        .who-we-serve-grid {
+          grid-template-rows: auto auto 1fr auto;
+        }
+        .who-we-serve-grid .serve-card {
+          display: grid;
+          grid-row: span 4;
+          grid-template-rows: subgrid;
+          row-gap: 0;
+        }
+        .who-we-serve-grid .serve-card h3,
+        .who-we-serve-grid .serve-card p {
+          min-height: 0;
+        }
+        .who-we-serve-grid .serve-card .serve-list {
+          margin-top: 0;
+        }
+
+        .timeline-stepper {
+          grid-template-rows: auto auto 1fr auto;
+        }
+        .timeline-stepper .timeline-card {
+          display: grid;
+          grid-row: span 4;
+          grid-template-rows: subgrid;
+          row-gap: 0;
+        }
+        .timeline-stepper .timeline-card h3,
+        .timeline-stepper .timeline-card p {
+          min-height: 0;
+        }
+        .timeline-stepper .timeline-card .timeline-deliverable {
+          margin-top: 0;
+        }
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .who-we-serve-grid,
+      .timeline-stepper,
+      .shield-card-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px;
+      }
+
+      .serve-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .serve-card p {
+        min-height: 4.8rem;
+      }
+
+      .timeline-card h3 {
+        min-height: 3.2rem;
+      }
+
+      .timeline-card p {
+        min-height: 4.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .who-we-serve-grid,
+      .timeline-stepper {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .serve-card h3,
+      .serve-card p,
+      .timeline-card h3,
+      .timeline-card p {
+        min-height: 0;
+      }
+    }
+
+    .footer-cta-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .footer-cta-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 10px 24px !important;
+      font-size: 0.84rem !important;
+      height: auto !important;
+      min-height: 38px !important;
+      line-height: 1 !important;
+      margin: 0 auto !important;
+    }
+
+    /* Home 2 Distinct Architecture */
+    .mandate-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media(max-width: 860px) {
+      .mandate-matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mandate-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 30px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mandate-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .mandate-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .mandate-code-badge {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: color-mix(in srgb, var(--gold) 14%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .mandate-status-tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mandate-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .mandate-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .mandate-card p {
+      font-size: 0.94rem;
+      color: var(--muted);
+      line-height: 1.62;
+      margin-bottom: 20px;
+    }
+
+    .mandate-deliverable-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .mandate-chip {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .mandate-action-link {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      transition: color .2s ease;
+    }
+
+    .mandate-action-link:hover {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .protocol-timeline-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .protocol-phase-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 200px 1fr 260px;
+      gap: 28px;
+      align-items: center;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position: relative;
+    }
+
+    .protocol-phase-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    @media(max-width: 992px) {
+      .protocol-phase-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 24px 22px;
+      }
+    }
+
+    .protocol-phase-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .protocol-phase-number {
+      font-family: "DM Serif Display", serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .protocol-phase-window {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .protocol-phase-main h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .protocol-phase-main p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.58;
+      margin: 0;
+    }
+
+    .protocol-benchmark-box {
+      background: var(--surface2);
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .protocol-benchmark-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .protocol-benchmark-val {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .shield-section {
+      margin-top: 54px;
+    }
+
+    .shield-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    @media(max-width: 1100px) {
+      .shield-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media(max-width: 560px) {
+      .shield-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .shield-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .shield-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .shield-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .shield-icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--gold) 15%, transparent);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+
+    .shield-level-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .shield-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .shield-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.58;
+      margin: 0 0 16px;
+    }
+
+    .shield-assurance-pill {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .shield-assurance-pill::before {
+      content: "●";
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+  </style>
 </head>
 
 <body data-page="home-02" class="">
@@ -75,9 +568,9 @@
           <h3>Businesses & Corporations</h3>
           <p>Protecting corporate balance sheets, operational integrity, and intellectual property from internal and external threats.</p>
           <ul class="serve-list">
-            <li>Internal Fraud & Embezzlement Triage</li>
-            <li>Whistleblower Allegation Fact-Finding</li>
-            <li>Vendor & Procurement Collusion Audits</li>
+            <li>Internal Fraud & Embezzlement Triage Support</li>
+            <li>Whistleblower Allegation Fact-Finding Audits</li>
+            <li>Vendor & Procurement Collusion Audit Checks</li>
           </ul>
         </div>
 
@@ -86,20 +579,20 @@
           <h3>Institutional Investors & PE</h3>
           <p>Uncovering the facts behind the pitch deck before growth capital or acquisition financing is committed.</p>
           <ul class="serve-list">
-            <li>Pre-M&A Integrity Diligence</li>
-            <li>Promoter & Founder Background Checks</li>
+            <li>Pre-M&A Integrity Diligence & Risk Checks</li>
+            <li>Promoter & Founder Background Verification</li>
             <li>Hidden Related-Party Transaction Mapping</li>
           </ul>
         </div>
 
         <div class="serve-card">
           <div class="serve-icon">⚖️</div>
-          <h3>Legal Counsel & Law Firms</h3>
+          <h3>Legal Professionals & Counsel</h3>
           <p>Equipping dispute and corporate attorneys with court-defensible facts and evidence for arbitration and complex litigation.</p>
           <ul class="serve-list">
-            <li>International Asset Tracing & Enforcement</li>
+            <li>International Asset Tracing & Recovery Support</li>
             <li>Witness Identification & Background Profiling</li>
-            <li>Evidentiary Document Verification</li>
+            <li>Evidentiary Document Verification & Fact Checks</li>
           </ul>
         </div>
 
@@ -108,185 +601,254 @@
           <h3>Corporate Decision-Makers</h3>
           <p>Providing independent, partner-led counsel for moments when standard executive reporting leaves critical questions unanswered.</p>
           <ul class="serve-list">
-            <li>C-Suite & Independent Director Screening</li>
-            <li>Cross-Border Sovereign & Regulatory Risk</li>
-            <li>Crisis Management & Fact Containment</li>
+            <li>C-Suite & Independent Director Screening Checks</li>
+            <li>Cross-Border Sovereign & Regulatory Risk Audits</li>
+            <li>Crisis Management & Fact Containment Response</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6 Distinct Practices Section -->
+  <!-- Strategic Practice Mandates Section (2-Column Executive Matrix) -->
   <section class="section-sm dark-band" id="services">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">02 / Core Practices</div>
-          <h2>Six distinct investigative disciplines.</h2>
+          <div class="eyebrow">02 / Strategic Practice Areas</div>
+          <h2>Specialised investigative capabilities & mandate execution.</h2>
         </div>
         <div>
-          <p>Partner-led engagements, tailored to the commercial and investigative question rather than a generic checklist.</p>
+          <p>Partner-led corporate intelligence structured to answer the commercial question with court-defensible provenance and discretion.</p>
         </div>
       </div>
 
-      <div class="grid grid-3">
-        <a class="image-card" href="services.html#corporate-investigations">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Corporate Investigations">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 01</span>
-            <h3>Corporate Investigations</h3>
-            <p>Discreet fact-finding across internal misconduct, trade secret theft, and covert conflicts of interest.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+      <div class="mandate-matrix-grid">
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 01</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Enterprise Malfeasance & Internal Fraud Inquiries</h3>
+          <p>Discreet forensic inquiries addressing complex executive whistleblowing, systemic procurement collusion, secret commissions, trade secret exfiltration, and covert director conflicts.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">Whistleblower Triage</span>
+            <span class="mandate-chip">Vendor Collusion Audits</span>
+            <span class="mandate-chip">Trade Secret Leakage</span>
+            <span class="mandate-chip">Digital Evidence Logs</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#corporate-investigations">View Details</a>
+        </div>
 
-        <a class="image-card" href="services.html#due-diligence">
-          <img src="assets/home3.jfif" alt="Due Diligence">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 02</span>
-            <h3>Due Diligence</h3>
-            <p>Integrity diligence for M&A and investments. Verifying beneficial ownership, promoter history, and unrecorded debt.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 02</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Cross-Border Transaction & M&A Integrity Intelligence</h3>
+          <p>Deep-background integrity diligence before acquisition, joint venture signing, or capital deployment. Unraveling ultimate beneficial ownership, nominee director layers, and undisclosed sovereign liabilities.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">Pre-Closing Integrity Memo</span>
+            <span class="mandate-chip">Nominee Unwinding</span>
+            <span class="mandate-chip">Promoter Track Record</span>
+            <span class="mandate-chip">Contingent Liability Risk</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#due-diligence">View Details</a>
+        </div>
 
-        <a class="image-card" href="services.html#background-verification">
-          <img src="assets/home0.jpg" alt="Background Verification">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 03</span>
-            <h3>Background Verification</h3>
-            <p>Enhanced executive and board vetting. Separating genuine credentials from litigation history and conflicts.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 03</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Executive & Boardroom Integrity Vetting Protocols</h3>
+          <p>Intelligence-grade C-suite screening and nomination vetting. Separating curated resume narratives from civil litigation, regulatory reprimands, undeclared advisory interests, and governance risks.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">Board Member Screening</span>
+            <span class="mandate-chip">Regulatory Sanctions Check</span>
+            <span class="mandate-chip">Reputational Risk Audit</span>
+            <span class="mandate-chip">Advisory Conflict Mapping</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#background-verification">View Details</a>
+        </div>
 
-        <a class="image-card" href="services.html#fraud-investigations">
-          <img src="assets/frdinv.webp" alt="Fraud Investigations">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 04</span>
-            <h3>Fraud Investigations</h3>
-            <p>Forensic inquiries into procurement kickbacks, phantom vendors, corporate embezzlement, and asset leakage.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 04</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Financial Forensics, Embezzlement & Asset Recovery</h3>
+          <p>Tracing hidden corporate dissipation and offshore capital flight across complex secrecy havens. Building courtroom-tested documentation trails for freeze orders and arbitral award enforcement.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">Cross-Border Asset Mapping</span>
+            <span class="mandate-chip">Phantom Vendor Inquiries</span>
+            <span class="mandate-chip">Offshore Dissipation Trail</span>
+            <span class="mandate-chip">Judgment Enforcement</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#fraud-investigations">View Details</a>
+        </div>
 
-        <a class="image-card" href="services.html#risk-assessment">
-          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Risk Assessment">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 05</span>
-            <h3>Risk Assessment</h3>
-            <p>Strategic foresight analyzing supply chain vulnerabilities, geopolitical shifts, and emerging market regulatory risks.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 05</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Geopolitical Foresight & Emerging Market Threat Assessment</h3>
+          <p>Discreet situational intelligence on shifting regulatory headwinds, sovereign counterparty friction, hostile market expropriation, and critical supply-chain dependencies.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">Sovereign Counterparty Review</span>
+            <span class="mandate-chip">Regulatory Horizon Scan</span>
+            <span class="mandate-chip">Supply Chain Exposure</span>
+            <span class="mandate-chip">Corridor Risk Briefing</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#risk-assessment">View Details</a>
+        </div>
 
-        <a class="image-card" href="services.html#compliance-support">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&fm=jpg&q=82&w=800" alt="Compliance Support">
-          <div class="copy">
-            <span class="eyebrow" style="color:var(--gold);font-weight:700;">Practice 06</span>
-            <h3>Compliance Support</h3>
-            <p>Independent evidentiary reviews covering anti-bribery (FCPA/UKBA), trade sanctions (OFAC), AML, and ESG defense.</p>
-            <span class="arrow" style="color:var(--gold);font-weight:700;display:inline-block;margin-top:auto;padding-top:10px;">Explore service ↗</span>
+        <div class="mandate-card">
+          <div class="mandate-card-header">
+            <span class="mandate-code-badge">Mandate Discipline 06</span>
+            <span class="mandate-status-tag"><span class="mandate-status-dot"></span> Active Practice</span>
           </div>
-        </a>
+          <h3>Anti-Bribery, Sanctions & Statutory Compliance Defense</h3>
+          <p>Evidentiary reviews covering FCPA, UK Bribery Act, OFAC trade sanctions, and AML counter-party screening to support board audit committees and outside defense counsel.</p>
+          <div class="mandate-deliverable-chips">
+            <span class="mandate-chip">FCPA / UKBA Inquiries</span>
+            <span class="mandate-chip">Sanctions & PEP Screening</span>
+            <span class="mandate-chip">Third-Party Intermediaries</span>
+            <span class="mandate-chip">Evidentiary Defense Memos</span>
+          </div>
+          <a class="mandate-action-link" href="services.html#compliance-support">View Details</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Process & Timelines -->
-  <section class="section">
+  <!-- Evidentiary Protocol Operational Timeline Section (Stacked Phase Cards) -->
+  <section class="section" id="methodology">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">03 / Investigation Process & Timelines</div>
-          <h2>A disciplined four-stage evidence framework.</h2>
+          <div class="eyebrow">03 / Evidentiary Methodology</div>
+          <h2>The Veritas Investigative Protocol: Phased mandate execution.</h2>
         </div>
         <div>
-          <p>Every mandate operates with clear turnaround estimates and defined deliverables, ensuring complete transparency.</p>
+          <p>Every mandate operates under structured evidentiary stages with verified turnaround intervals, strict chain of custody, and auditable client milestones.</p>
         </div>
       </div>
 
-      <div class="timeline-stepper">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <span class="timeline-step-badge">Stage 01</span>
-            <span class="timeline-duration">24 – 48 Hours</span>
+      <div class="protocol-timeline-stack">
+        <div class="protocol-phase-card">
+          <div class="protocol-phase-identity">
+            <span class="protocol-phase-number">01</span>
+            <span class="protocol-phase-window">Within 24 – 48 Hours</span>
           </div>
-          <h3>Confidential Scoping</h3>
-          <p>Aligning on the investigative hypothesis, executing bilateral NDA protections, and checking client conflicts.</p>
-          <div class="timeline-deliverable">Milestone: Scoping Charter</div>
+          <div class="protocol-phase-main">
+            <h3>Phase I: Mandate Scoping, Conflict Audit & Bilateral Firewalls</h3>
+            <p>Framing the core investigative question, checking institutional conflicts across all operating offices, executing bilateral non-disclosure protocols, and agreeing on court-defensible evidentiary boundaries.</p>
+          </div>
+          <div class="protocol-benchmark-box">
+            <span class="protocol-benchmark-label">Operational Deliverable</span>
+            <span class="protocol-benchmark-val">Executed Scope Charter & Conflict Clearance</span>
+          </div>
         </div>
 
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <span class="timeline-step-badge">Stage 02</span>
-            <span class="timeline-duration">5 – 10 Days</span>
+        <div class="protocol-phase-card">
+          <div class="protocol-phase-identity">
+            <span class="protocol-phase-number">02</span>
+            <span class="protocol-phase-window">5 – 10 Business Days</span>
           </div>
-          <h3>Intelligence Gathering</h3>
-          <p>Multi-source registry retrieval, litigation dockets, asset mapping, and discreet human intelligence inquiries.</p>
-          <div class="timeline-deliverable">Milestone: Interim Briefing</div>
+          <div class="protocol-phase-main">
+            <h3>Phase II: Multi-Jurisdictional Intelligence & Registry Discovery</h3>
+            <p>Retrieval of non-public and statutory filings across global corporate registries, court dockets, cross-border corporate tree unwinding, and discreet, non-attributable source inquiries.</p>
+          </div>
+          <div class="protocol-benchmark-box">
+            <span class="protocol-benchmark-label">Operational Deliverable</span>
+            <span class="protocol-benchmark-val">Classified Interim Evidence Dossier</span>
+          </div>
         </div>
 
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <span class="timeline-step-badge">Stage 03</span>
-            <span class="timeline-duration">3 – 5 Days</span>
+        <div class="protocol-phase-card">
+          <div class="protocol-phase-identity">
+            <span class="protocol-phase-number">03</span>
+            <span class="protocol-phase-window">3 – 5 Business Days</span>
           </div>
-          <h3>Corroboration & Testing</h3>
-          <p>Stress-testing leads against independent primary sources to eliminate rumors, bias, and unsubstantiated claims.</p>
-          <div class="timeline-deliverable">Milestone: Audit Log</div>
+          <div class="protocol-phase-main">
+            <h3>Phase III: Primary Source Triangulation & Adversarial Corroboration</h3>
+            <p>Stress-testing material findings across independent primary sources to eliminate hearsay, bias, and false trails. Creating verifiable audit logs with document chain-of-custody.</p>
+          </div>
+          <div class="protocol-benchmark-box">
+            <span class="protocol-benchmark-label">Operational Deliverable</span>
+            <span class="protocol-benchmark-val">Evidentiary Audit Trail & Corroboration Log</span>
+          </div>
         </div>
 
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <span class="timeline-step-badge">Stage 04</span>
-            <span class="timeline-duration">2 – 3 Weeks Total</span>
+        <div class="protocol-phase-card">
+          <div class="protocol-phase-identity">
+            <span class="protocol-phase-number">04</span>
+            <span class="protocol-phase-window">Final: 2 – 3 Weeks</span>
           </div>
-          <h3>Executive Dossier</h3>
-          <p>Delivery of a court-defensible findings dossier accompanied by an oral debrief with corporate decision-makers.</p>
-          <div class="timeline-deliverable">Milestone: Defensible Master Report</div>
+          <div class="protocol-phase-main">
+            <h3>Phase IV: Counsel-Ready Master Dossier & Partner Oral Debrief</h3>
+            <p>Synthesis into a structured, courtroom-defensible findings dossier designed for executive committees, board chairs, and litigation counsel, accompanied by an in-person or encrypted oral debrief.</p>
+          </div>
+          <div class="protocol-benchmark-box">
+            <span class="protocol-benchmark-label">Operational Deliverable</span>
+            <span class="protocol-benchmark-val">Defensible Master Dossier & Partner Debrief</span>
+          </div>
         </div>
       </div>
 
-      <div class="security-guarantee-band">
-        <div>
-          <div class="eyebrow">Confidentiality Guarantee</div>
-          <h3 style="margin:8px 0 12px;">Protected from the first conversation.</h3>
-          <p style="font-size:0.92rem;color:var(--muted);line-height:1.6;margin:0;">Initial consultations are conducted without requiring disclosure of target names or sensitive files. Your enquiry is shielded by strict bilateral non-disclosure protocols.</p>
+      <!-- Institutional Client Confidentiality Shield (4-Card Security Grid) -->
+      <div class="shield-section">
+        <div class="section-head" style="margin-bottom:0;">
+          <div>
+            <div class="eyebrow">Client Safeguards · Governance Protocol</div>
+            <h3 style="font-size:1.85rem;margin-top:8px;">Four institutional safeguards protecting your inquiry.</h3>
+          </div>
+          <div>
+            <p>Strict operational controls protect your organization's identity, sensitive subject targets, and work product from first contact through post-mandate archival.</p>
+          </div>
         </div>
 
-        <div class="security-pillars">
-          <div class="security-pillar-item">
-            <div class="security-pillar-icon">🔒</div>
-            <div>
-              <strong>Pre-Consultation NDA</strong>
-              <span>Immediate execution of mutual confidentiality protection.</span>
+        <div class="shield-card-grid">
+          <div class="shield-card">
+            <div class="shield-card-top">
+              <div class="shield-icon-badge">🔒</div>
+              <span class="shield-level-tag">Safeguard 01</span>
             </div>
+            <h4>Pre-Engagement Bilateral NDA</h4>
+            <p>Immediate execution of bilateral non-disclosure protections prior to the disclosure of target names, counterparty identities, or internal files.</p>
+            <div class="shield-assurance-pill">Legal Privilege Coordination</div>
           </div>
 
-          <div class="security-pillar-item">
-            <div class="security-pillar-icon">🛡️</div>
-            <div>
-              <strong>Zero Data Retention</strong>
-              <span>Unengaged scoping notes are systematically shredded.</span>
+          <div class="shield-card">
+            <div class="shield-card-top">
+              <div class="shield-icon-badge">🛡️</div>
+              <span class="shield-level-tag">Safeguard 02</span>
             </div>
+            <h4>Forensic Zero-Trace Data Purge</h4>
+            <p>Preliminary consultation notes and unengaged scoping materials are systematically purged and destroyed under certified data sanitization protocols.</p>
+            <div class="shield-assurance-pill">Zero Residual Storage</div>
           </div>
 
-          <div class="security-pillar-item">
-            <div class="security-pillar-icon">🔑</div>
-            <div>
-              <strong>Encrypted Channels</strong>
-              <span>PGP and encrypted telephone channels available.</span>
+          <div class="shield-card">
+            <div class="shield-card-top">
+              <div class="shield-icon-badge">🔑</div>
+              <span class="shield-level-tag">Safeguard 03</span>
             </div>
+            <h4>Air-Gapped & PGP Encrypted Conduits</h4>
+            <p>Dedicated 256-bit PGP encrypted communication channels and sovereign offline servers available for high-risk corporate and cross-border matters.</p>
+            <div class="shield-assurance-pill">End-to-End Encryption</div>
           </div>
 
-          <div class="security-pillar-item">
-            <div class="security-pillar-icon">⚖️</div>
-            <div>
-              <strong>Conflict Clearance</strong>
-              <span>Rigorous client clearance prevents adverse representation.</span>
+          <div class="shield-card">
+            <div class="shield-card-top">
+              <div class="shield-icon-badge">⚖️</div>
+              <span class="shield-level-tag">Safeguard 04</span>
             </div>
+            <h4>Institutional Conflict Clearance</h4>
+            <p>Automated global conflict vetting across all Veritas offices ensures zero concurrent, adverse, or competitive representation of target parties.</p>
+            <div class="shield-assurance-pill">100% Conflict Disqualified</div>
           </div>
         </div>
       </div>
@@ -299,9 +861,9 @@
       <div class="eyebrow">04 / Start a Conversation</div>
       <h2 style="margin:12px 0 16px;">Begin with the situation. Not the whole dossier.</h2>
       <p class="lead">Tell us only what is necessary to frame the issue. We can discuss the appropriate next step before sensitive names or proprietary files are shared.</p>
-      <div style="margin-top:28px;">
+      <div class="cta-btn-group">
         <a class="btn gold" href="contact.html">Request a Confidential Consultation</a>
-        <a class="btn secondary" style="margin-left:10px;" href="services.html">Explore All Practices</a>
+        <a class="btn secondary" href="services.html">Explore All Practices</a>
       </div>
     </div>
   </section>
@@ -339,7 +901,9 @@
         <p>BKC, Mumbai: +91 (0) 22 4900 1200</p>
         <p>Mayfair, London: +44 (0) 20 7946 0920</p>
         <p>Secure Email: enquiries@veritas-intel.com</p>
-        <p style="margin-top:14px;"><a class="btn gold" style="display:inline-block;padding:8px 16px;font-size:0.82rem;" href="contact.html">Contact Us</a></p>
+        <div class="footer-cta-wrap">
+          <a class="btn gold footer-cta-btn" href="contact.html">Contact Us</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">
