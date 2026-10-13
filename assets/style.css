@@ -3069,7 +3069,7 @@ html[data-theme="dark"] .resource-tab-btn.active {
   }
 }
 
-@media(max-width: 560px) {
+@media(max-width: 640px) {
   .shield-card-grid {
     grid-template-columns: 1fr;
   }
